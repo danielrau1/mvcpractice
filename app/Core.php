@@ -1,8 +1,8 @@
 <?php
 class Core{
 
-    protected $currentController = 'Controller';
-    protected $currentMethod = 'index';
+    protected $currentController = 'Pages';
+    protected $currentMethod = 'mainNavPage';
     protected $params = [];
 
 public function __construct(){

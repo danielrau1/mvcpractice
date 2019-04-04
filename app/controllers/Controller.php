@@ -22,14 +22,6 @@ class Controller{
     }
 
 
-    public function index(){
 
-
-        require 'C:\xampp\htdocs\mvcpractice\app\views\navbar.php';
-    }
-
-    public function page1(){
-        require 'C:\xampp\htdocs\mvcpractice\app\views\page1.php';;
-    }
 
 }
