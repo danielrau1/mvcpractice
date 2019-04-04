@@ -16,4 +16,9 @@ class Pages extends Controller
         require 'C:\xampp\htdocs\mvcpractice\app\views\page1.php';;
     }
 
+    public function users()
+    {
+        require 'C:\xampp\htdocs\mvcpractice\app\views\users.php';;
+    }
+
 }

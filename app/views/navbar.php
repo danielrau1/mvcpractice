@@ -9,6 +9,9 @@
         <li>
             <a href="http://localhost/mvcpractice/Pages/page1">Page1</a>
         </li>
+        <li>
+            <a href="http://localhost/mvcpractice/Pages/users">Users</a>
+        </li>
 
     </ul>
 
