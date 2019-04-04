@@ -22,16 +22,29 @@ function createPdo()
 
 function insertIntoTable($name,$password){
     $pdo=createPdo();
-
-
-
-    $sql = 'INSERT INTO users(name,password) VALUES(:name, :password)';
+    $sql = 'SELECT * FROM users WHERE (name=:name OR password=:password)';
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['name' => $name, 'password' => $password]);
-    echo 'User Registered';
+    $stmt->execute(['name'=>$name,'password'=>$password]);
+    $found = $stmt->fetchAll();
 
-    $pdo=null;
+    $names=[];
+    $passwords=[];
+    foreach($found as $post){
+        array_push($names,$post->name);
+        array_push($passwords,$post->password);
+    }
+if(in_array($name,$names)) echo "such name already exists";
+    elseif(in_array($password,$passwords)) echo "such password already exists";
 
+    else {
+        $sql = 'INSERT INTO users(name,password) VALUES(:name, :password)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['name' => $name, 'password' => $password]);
+        echo 'User Registered';
+
+        $pdo = null;
+header('Location: http://localhost/mvcpractice/views/page1');
+    }
 }
 
 function showAll($name,$password){
@@ -64,8 +77,8 @@ function showAll($name,$password){
 </form>
 
 <?php
-//if(isset($_POST['bt1'])) insertIntoTable($_POST['name'], $_POST['password']);
-if(isset($_POST['bt1'])) showAll($_POST['name'], $_POST['password']);
+if(isset($_POST['bt1'])) insertIntoTable($_POST['name'], $_POST['password']);
+//if(isset($_POST['bt1'])) showAll($_POST['name'], $_POST['password']);
 
 
 ?>
