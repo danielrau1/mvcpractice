@@ -1,9 +1,9 @@
-<?php require 'C:\xampp\htdocs\mvcpractice\app\views\navbar.php'; ?>
+
 
 
 <h1>Users here</h1>
 <?php
-
+session_start();
 
 function createPdo()
 {
@@ -40,29 +40,30 @@ if(in_array($name,$names)) echo "such name already exists";
         $sql = 'INSERT INTO users(name,password) VALUES(:name, :password)';
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['name' => $name, 'password' => $password]);
-        echo 'User Registered';
+        //echo 'User Registered';
 
         $pdo = null;
+        $_SESSION['currentUser']=$name;
 header('Location: http://localhost/mvcpractice/views/page1');
     }
 }
 
-function showAll($name,$password){
-    $pdo=createPdo();
-    $sql = 'SELECT * FROM users WHERE (name=:name OR password=:password)';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['name'=>$name,'password'=>$password]);
-    $found = $stmt->fetchAll();
-
-    $names=[];
-    foreach($found as $post){
-        echo $post->name.' '.$post->password.'<br>';
-        array_push($names,$post->name);
-    }
-    print_r($names);
-
-    $pdo=null;
-}
+//function showAll($name,$password){
+//    $pdo=createPdo();
+//    $sql = 'SELECT * FROM users WHERE (name=:name OR password=:password)';
+//    $stmt = $pdo->prepare($sql);
+//    $stmt->execute(['name'=>$name,'password'=>$password]);
+//    $found = $stmt->fetchAll();
+//
+//    $names=[];
+//    foreach($found as $post){
+//        echo $post->name.' '.$post->password.'<br>';
+//        array_push($names,$post->name);
+//    }
+//    print_r($names);
+//
+//    $pdo=null;
+//}
 
 
 

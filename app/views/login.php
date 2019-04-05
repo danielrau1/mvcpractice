@@ -1,9 +1,9 @@
-<?php require 'C:\xampp\htdocs\mvcpractice\app\views\navbar.php'; ?>
+
 
 
     <h1>Login here</h1>
 <?php
-
+session_start();
 
 function createPdo()
 {
@@ -35,7 +35,10 @@ function logIn($name,$password){
     print_r($names);
     $pdo=null;
     if(sizeof($names)==0) echo "No such user";
-    else header('Location: http://localhost/mvcpractice/views/page1');
+    else{
+        $_SESSION['currentUser']=$name;
+        header('Location: http://localhost/mvcpractice/views/page1');
+    }
 
 
 }

@@ -2,7 +2,7 @@
 class Core{
 
     protected $currentController = 'Pages';
-    protected $currentMethod = 'mainNavPage';
+    protected $currentMethod = 'login';
     protected $params = [];
 
 public function __construct(){
